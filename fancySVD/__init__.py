@@ -6,6 +6,6 @@ from .solver import Solver
 # while iterative imputer is experimental in sklearn, we need this
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = ["IterativeSVD", "Solver"]
