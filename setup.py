@@ -50,7 +50,7 @@ if __name__ == "__main__":
             "Programming Language :: Python",
             "Topic :: Scientific/Engineering :: Bio-Informatics",
         ],
-        install_requires=["scikit-learn==0.24.2", "numpy==1.19.5"],
+        install_requires=["scikit-learn==0.24.2", "numpy>=1.19.5"],
         long_description=readme_markdown,
         long_description_content_type="text/markdown",
         packages=[package_name],
