@@ -1,8 +1,5 @@
 sudo: false
 language: python
-env:
-  global:
-  - CUDA_VISIBLE_DEVICES=""
 matrix:
   include:
   - python: 3.6
