@@ -1,53 +1,24 @@
-sudo: false  # Use container-based infrastructure
+sudo: false
 language: python
-env:
-  global:
-    - KERAS_BACKEND=tensorflow
-    - CUDA_VISIBLE_DEVICES=""
 matrix:
   include:
-    - python: 3.6
-before_install:
-  # Commands below copied from: http://conda.pydata.org/docs/travis.html
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  # reset the shell's lookup table for program name to path mappings
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-addons:
-  apt:
-    packages:
-    # Even though I'm installing cvxopt via conda, still seem to need these:
-    - liblapack-dev
-    - libatlas-base-dev
+  - python: 3.6
 install:
-  - >
-      conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
-      numpy=1.19.5 keras=2.4.3 scipy nose pandas matplotlib cvxopt scikit-learn
-  - source activate test-environment
-  - conda install -c cvxgrp scs=1.2.6
-  - pip install tensorflow==2.5
-  - pip install -r requirements.txt
-  - pip install .
-  - pip install coveralls
-  - export PACKAGE_DIR=`pwd`
+- pip install -r requirements.txt
+- pip install .
+- pip install coveralls
+- export PACKAGE_DIR=`pwd`
 script:
-  - cd $PACKAGE_DIR
-  - nosetests test --with-coverage --cover-package=fancyimpute
+- cd $PACKAGE_DIR
+- nosetests test --with-coverage --cover-package=fancySVD
 after_success:
-  - coveralls
+- coveralls
 deploy:
   provider: pypi
   distributions: sdist
-  user: openvax
-  password: # See http://docs.travis-ci.com/user/encryption-keys/
-    secure: "AAzTof2771B8tjg2PzCFfctNUbJ6BcQIkH3skpKJvoyWmL0U/fqnGF6zpK0QApJBqTX/xygYhLSfKWZ788FWwyaHW6Hgw8UQ1eHJPurjC9P8O/OWYRhK3r9J7dEPL4+uHfD67C7C+JGCl9BQk8+dRGYDOJ9kx32Eown8wtaoNY7ykLwq/mXsJcm+NjvfJzA7xE4TbGlL1RFDidUkwZ4YgWtGFcfEtVZlO+pEqeprLr/PBQap6K6WPA5yjQKziaqw5DSjMAU5TVDoZgIMu3/uxUJS6EGYs7FvRM961oEFXs9QvhDz+VtKr1kY8wGR1kJXes41NDr8fq9MqBAGcz3yxHeEP1wU1Aukfbw6QUQqQ7rUWFVKSqeVAq7Phirz7RHWslXl9dSoK2REQA3C8sXggmj198YhEq7QufxzTkD4KCDj+jutbMURZI5re6oetLqBz+8zExywXLKgVtTlUnokJ9R5Fnl0E1B4LMHXRvus71+vLQfv2gCt5OWRxzUfUFzpMdkXG2FDmjFGdBw6OWMhS1W+B19ht6Ho4SoN0Tj3YzvZt2AEwShm1i0LA8ITSN1lQdEucdz0kAhvXVRJtcGa4y48/uT9e8gzeyDyANvJ1RAbCsj3/kazucZH9I0b0lRyMiadtj7mfQwnU9MXCJzG7e912sGJDImyiTXqTQfw1Us="
+  user: ccdl
+  password:
+    secure: IZONk5QobGE5ZJpASG25n9u5cD/d9EFTokmdp+yyIycMGifjH0sZtYXuGkO1aWb3UN38lA/rzI7JeVjQsyBiKd3In+xcEp07xvPQK6EUpyYIxj2vd6cy46Q7UJS6ljE6kEUpTsvRqsjQaQBN58sk0l3t9LxbcSTLZBGOI0VR3GRIf9gMVNCL/5SjA+4HyzdOissB0MRJ1toqvHdJYrGr6ebmxrdGRWYzex3ZF4X+22Yfd++ByNk9lgc0UStvyRtKSWH4Mt4zQGjXEFb1W2eMvDcJKQSR1kF5TjDowdnDHzEO5KovKSCu5taFYuymsLul2FxGk/juPXDcO974rO9BF7ITTqlsBI9X1x5gR9ThmVgLI4uNtwKcoPYab6ee4dm7sFCDl9xjaaYHQgnPpg7PEFEg5e//Z1b6Na1fBcaO22WrVc15UWOz/nnADz3ojR5MPWsUEdPzqmfoRiB/AbkWR/BuBIoroueO7GxUH+FaLRdl7uZz+IEpsUzZCOS3OvRJ+DycrEJnskiaswUypiMGkil4wqEhn45iX+K34rouKTs5tkPztpZ4+qnpmFMl4SXxEcWguGW89UxcJifrawusM3rgHPx5ZTJBWlP9R183V13PGs7B9N22zEGvfavOOCKrbeYCiA8/IEXtIALp6cyNhssqH0QcU+TE+UuI9SnH4Nw=
   on:
     branch: master
     condition: $TRAVIS_PYTHON_VERSION = "3.6"
