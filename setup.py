@@ -37,9 +37,9 @@ if __name__ == "__main__":
         name=package_name,
         version=version,
         description="Matrix completion and feature imputation algorithms",
-        author="Alex Rubinsteyn, Sergey Feldman",
-        author_email="alex.rubinsteyn@gmail.com",
-        url="https://github.com/iskandr/%s" % package_name,
+        author="Alex Rubinsteyn, Sergey Feldman, Kurt Wheeler",
+        author_email="kurt@ccdatalab.org",
+        url="https://github.com/AlexsLemonade/%s" % package_name,
         license="http://www.apache.org/licenses/LICENSE-2.0.html",
         classifiers=[
             "Development Status :: 4 - Beta",
