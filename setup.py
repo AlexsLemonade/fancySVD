@@ -36,7 +36,7 @@ if __name__ == "__main__":
     setup(
         name=package_name,
         version=version,
-        description="Matrix completion and feature imputation algorithms",
+        description="Only the IterativeSVD algorithm from the fancyimpute package",
         author="Alex Rubinsteyn, Sergey Feldman, Kurt Wheeler",
         author_email="kurt@ccdatalab.org",
         url="https://github.com/AlexsLemonade/%s" % package_name,
