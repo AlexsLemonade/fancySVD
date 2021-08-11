@@ -15,7 +15,7 @@ after_success:
 deploy:
   provider: pypi
   distributions: sdist
-  username: "__token__""
+  username: "__token__"
   password:
     secure: IZONk5QobGE5ZJpASG25n9u5cD/d9EFTokmdp+yyIycMGifjH0sZtYXuGkO1aWb3UN38lA/rzI7JeVjQsyBiKd3In+xcEp07xvPQK6EUpyYIxj2vd6cy46Q7UJS6ljE6kEUpTsvRqsjQaQBN58sk0l3t9LxbcSTLZBGOI0VR3GRIf9gMVNCL/5SjA+4HyzdOissB0MRJ1toqvHdJYrGr6ebmxrdGRWYzex3ZF4X+22Yfd++ByNk9lgc0UStvyRtKSWH4Mt4zQGjXEFb1W2eMvDcJKQSR1kF5TjDowdnDHzEO5KovKSCu5taFYuymsLul2FxGk/juPXDcO974rO9BF7ITTqlsBI9X1x5gR9ThmVgLI4uNtwKcoPYab6ee4dm7sFCDl9xjaaYHQgnPpg7PEFEg5e//Z1b6Na1fBcaO22WrVc15UWOz/nnADz3ojR5MPWsUEdPzqmfoRiB/AbkWR/BuBIoroueO7GxUH+FaLRdl7uZz+IEpsUzZCOS3OvRJ+DycrEJnskiaswUypiMGkil4wqEhn45iX+K34rouKTs5tkPztpZ4+qnpmFMl4SXxEcWguGW89UxcJifrawusM3rgHPx5ZTJBWlP9R183V13PGs7B9N22zEGvfavOOCKrbeYCiA8/IEXtIALp6cyNhssqH0QcU+TE+UuI9SnH4Nw=
   on:
